@@ -1,43 +1,54 @@
 .card-extra-styles {
-    width: 240px;
-    height: 120px;
-    background-color: hwb(40 20% 77%);
+    width: 320px;
+    height: 200px;
+    background: linear-gradient(135deg, #fafafa 0%, #e8e8e8 100%);
     border-radius: 15px;
-    border-width: 3px;
-    box-shadow: #72a24d 3px 3px 3px 5px;
-    border-style: ridge;   
-    padding: 5px; 
-    margin: 10px;
+    border: 2px solid #8ecae6;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.card-extra-styles:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
 .card-title {
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 3px;
-
+    color: #555;
+    margin-bottom: 8px;
+    text-transform: uppercase;
 }
+
 .share-card__image {
-    padding: 2px;
-   
-    border-radius: 10px;
-    align-content: center;
-    width: 40px;
-    height: 40px;
+    padding: 5px;
+    border-radius: 50%;
+    border: 2px solid #8ecae6;
+    width: 60px;
+    height: 60px;
     display: block;
-    margin: 0 auto;
-    border-radius: 20px;
-
+    margin: 0 auto 10px auto;
+    background-color: #fff;
 }
+
 .card-body {
-    margin: 2px;
+    margin: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
- 
+    gap: 8px;
 }
-.card-text{
-    font-size: 10px;
+
+.card-text {
+    font-size: 13px;
+    color: #333;
     text-align: center;
-    font-weight: bold;
-    margin-top: 3px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-top: 5px;
+    padding: 0 10px;
 }
