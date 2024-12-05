@@ -1,34 +1,41 @@
 import axios from 'axios';
 import { LoginData } from '../Interfaces/LoginData';
 import { Usuario } from '../Interfaces/Usuario';
-
+ 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:5165/api',
+    baseURL: 'https://tcwhl22p-5165.brs.devtunnels.ms/api',
     headers:{
         'Content-Type': 'application/json'
     }
 })
-
+ 
+const apiClientV2 = axios.create({
+    baseURL: 'https://tcwhl22p-5165.brs.devtunnels.ms',
+    headers:{
+        'Content-Type': 'application/json'
+    }
+})
+ 
 export const LoginAPI = (loginData: LoginData) => {  
     return apiClient.post('/Login/login', loginData)
 }
-
+ 
 export const CriarUsuario = (dadosUsuario: Usuario) =>{
     return apiClient.post('/User', dadosUsuario)
 }
-
+ 
 export const AtualizarUsuario = (dadosUsuario: Usuario) =>{
     return apiClient.put('/User/UpdateUser', dadosUsuario)
 }
-
+ 
 export const DeletarUsuario = (id: string) =>{
     return apiClient.delete(`/UserController/DeleteUser/${id}`)
 }
-
+ 
 export const ListarUsuarios = () =>{    
     return apiClient.get('/UserController/GetAll')
 }
-
+ 
 export const FetchShareBySymbol = async (symbol: string) =>{
     try {
         const response = await apiClient.get(`/Share/${symbol}`,
@@ -44,11 +51,11 @@ export const FetchShareBySymbol = async (symbol: string) =>{
         throw error;
     }
 }
-
-
+ 
+ 
 export const FetchShareListPaged = async (page: number, resultsByPage: number) =>{
     try {
-        const response = await apiClient.get(`/Share/${page}, ${resultsByPage}`,
+        const response = await apiClientV2.get(`/Share/${page}, ${resultsByPage}`,
             {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -61,7 +68,7 @@ export const FetchShareListPaged = async (page: number, resultsByPage: number) =
         throw error;
     }
 }
-
+ 
 export const FetchAllShares = async () =>{
     try {
         const response = await apiClient.get(`/Share`,
@@ -77,3 +84,5 @@ export const FetchAllShares = async () =>{
         throw error;
     }
 }
+ 
+ 

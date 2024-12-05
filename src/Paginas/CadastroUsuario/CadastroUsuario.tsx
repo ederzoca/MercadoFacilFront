@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm, useFieldArray } from 'react-hook-form';
 import { CriarUsuario } from '../../Servicos/MercadoFacilAPI';
 

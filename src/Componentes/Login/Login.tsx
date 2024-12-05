@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoginData } from "../../Interfaces/LoginData";
 import { LoginAPI } from "../../Servicos/MercadoFacilAPI";
 import './Login.css';
@@ -10,6 +10,8 @@ const Login = () => {
         password: ''
     });
 
+    const navigate = useNavigate();
+
     const handleLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setLoginData({
@@ -18,15 +20,14 @@ const Login = () => {
         });
     }
 
-    const handleSubmit = async (event: React.MouseEventHandler<HTMLButtonElement> | any) => {
+    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement> | any) => {
         event.preventDefault();
         try {
             const response = await LoginAPI(loginData);
             if (response.data && response.status === 200) {
                 alert('Login realizado com sucesso');
-                sessionStorage.setItem('token', response.data.token);               
-                const testeRecuperaDado = sessionStorage.getItem('token');
-                alert('Dado Recuperado do session storage: ' + testeRecuperaDado);
+                sessionStorage.setItem('token', response.data.token);
+                navigate('/Home/AreaLogada'); 
             } else {
                 alert('Falha no login');
             }
